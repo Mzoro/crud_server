@@ -1,5 +1,6 @@
 class ProdsController < ApplicationController
   before_action :set_prod, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :verify_authenticity_token
 
   # GET /prods
   # GET /prods.json
