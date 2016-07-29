@@ -1,35 +1,18 @@
-import React, { PropTypes } from 'react';
-import HelloWorldWidget from '../components/HelloWorldWidget';
-import _ from 'lodash';
+import React from 'react';
+import { Router, Route, browserHistory } from 'react-router';
 
-// Simple example of a React "smart" component
-export default class HelloWorld extends React.Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired, // this is passed from the Rails view
-  };
+import EditProd from '../components/EditProd';
+import CreateProd from '../components/CreateProd';
+import IndexProd from '../components/IndexProd';
 
-  constructor(props, context) {
-    super(props, context);
-
-    // How to set initial state in ES6 class syntax
-    // https://facebook.github.io/react/docs/reusable-components.html#es6-classes
-    this.state = { name: this.props.name };
-
-    // Uses lodash to bind all methods to the context of the object instance, otherwise
-    // the methods defined here would not refer to the component's class, not the component
-    // instance itself.
-    _.bindAll(this, 'updateName');
-  }
-
-  updateName(name) {
-    this.setState({ name });
-  }
-
-  render() {
+export default class RouterCrud extends React.Component {
+  render () {
     return (
-      <div>
-        <HelloWorldWidget name={this.state.name} updateName={this.updateName} />
-      </div>
-    );
+      <Router history={browserHistory}>
+        <Route path="/crud/prods" component={IndexProd}/>
+        <Route path="/crud/prods/new" component={CreateProd}/>
+        <Route path="/crud/prods/:id/edit" component={EditProd}/>
+      </Router>
+    )
   }
 }
