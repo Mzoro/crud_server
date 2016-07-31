@@ -17,17 +17,17 @@ export default class EditProd extends React.Component {
    });
   }
 
-  actionChangeName(event) {
+  changeName(event) {
     this.state.prod.name = event.target.value
     this.setState({ prod : this.state.prod })
   }
 
-  actionChangeDes(event) {
+  changeDes(event) {
     this.state.prod.des = event.target.value
     this.setState({ prod : this.state.prod })
   }
 
-  actionUpdateProd() {
+  updateProd() {
     request
       .put(`/prods/${this.props.params.id}.json`)
       .send( {prod: this.state.prod })
@@ -55,18 +55,18 @@ export default class EditProd extends React.Component {
       <div>
         <h1>Editing prod</h1>
         <ul>
-         {Object.keys(this.state.errors).map(this.renderError.bind(this))}
+         {Object.keys(this.state.errors).map( (key) => this.renderError(key) )}
        </ul>
         <div className="field">
           <label>name</label>
-          <input type="text" value={this.state.prod.name} onChange={ (e) => this.actionChangeName(e) }/>
+          <input type="text" value={this.state.prod.name} onChange={ (e) => this.changeName(e) }/>
         </div>
         <div className="field">
           <label>des</label>
-          <textarea value={this.state.prod.des} onChange={ (e) => this.actionChangeDes(e) }/>
+          <textarea value={this.state.prod.des} onChange={ (e) => this.changeDes(e) }/>
         </div>
         <div className="actions">
-          <button onClick={() => this.actionUpdateProd()}>Update prod</button>
+          <button onClick={() => this.updateProd()}>Update prod</button>
         </div>
         <Link to={ "/crud/prods" }>Back</Link>
       </div>

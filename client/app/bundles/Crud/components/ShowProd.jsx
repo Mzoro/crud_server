@@ -18,7 +18,7 @@ export default class ShowProd extends React.Component {
   }
 
   render(){
-    const path = `/crud/prods/${this.state.prod.id}/edit`
+    const edit_path = `/crud/prods/${this.state.prod.id}/edit`
     return (
       <div>
         Prod:
@@ -26,7 +26,7 @@ export default class ShowProd extends React.Component {
           <li>{this.state.prod.name}</li>
           <li>{this.state.prod.des}</li>
         </ul>
-        <Link to={path}><button>Edit</button></Link>
+        <Link to={edit_path}><button>Edit</button></Link>
         <Link to='/crud/prods'><button>Back</button></Link>
       </div>
     )

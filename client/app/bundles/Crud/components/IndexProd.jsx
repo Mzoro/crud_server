@@ -18,9 +18,7 @@ export default class IndexProd extends React.Component {
 
   destroyProd(key, id) {
     delete this.state.prods[key];
-    this.setState({
-      prods: this.state.prods
-    })
+    this.setState({ prods: this.state.prods })
     request
       .del(`/prods/${id}.json`)
       .end(function(err, res){
@@ -33,7 +31,7 @@ export default class IndexProd extends React.Component {
     const edit_path = `/crud/prods/${id}/edit`;
     const show_path = `/crud/prods/${id}`;
     return (
-      <li key={prod.id}>
+      <li key={id}>
         {prod.name+" "+prod.des+" "}
         <Link to={show_path}><button>Show</button></Link>
         <Link to={edit_path}><button>Update</button></Link>
